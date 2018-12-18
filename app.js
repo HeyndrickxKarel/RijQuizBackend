@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/rijqijzdb', {useNewUrlParser: true});
+mongoose.connect(process.env.RIJQUIZ_DATABASE||'mongodb://localhost/rijqijzdb', {useNewUrlParser: true});
 
 require("./models/Question");
 require("./models/Settings");
