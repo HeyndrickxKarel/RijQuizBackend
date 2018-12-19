@@ -20,7 +20,7 @@ router.get("/API/settings/", function (req, res, next) {
   query.exec(function (err, settings) {  
     if (err || settings.length == 0)
       return next(new Error("Settings were not found"));
-    res.json(settings.version);
+    res.json(settings);
 
   })
 });
