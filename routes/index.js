@@ -35,6 +35,22 @@ router.post("/API/question/",function(req,res,next){
   })
 });
 
+
+router.param('question', function (req, res, next,id){
+  let query = Question.findById(id);
+  query.exec(function(err,question){
+    if(err){
+      return next(err);
+    }
+    if (!question){
+      return next (new Error('Question with id ' + id + ' not found'));      
+    }
+    req.question = question;
+    return next();
+
+  })
+})
+
 router.delete('/API/question/:question', function(req, res){
   req.question.remove(function(err){
     if(err){
