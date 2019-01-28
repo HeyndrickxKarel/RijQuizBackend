@@ -15,6 +15,7 @@ router.get('/API/questions/', function(req, res, next) {
   });
 });
 
+/* GET settings . */
 router.get("/API/settings/", function (req, res, next) {
   let query = Settings.findOne({});
   query.exec(function (err, settings) {  
@@ -22,6 +23,24 @@ router.get("/API/settings/", function (req, res, next) {
       return next(new Error("Settings were not found"));
     res.json(settings);
 
+  })
+});
+
+/* POST question . */
+router.post("/API/question/",function(req,res,next){
+  let question = new Question(req.body);
+  Question.save(function(err, rec){
+    if (err){return next(err);}
+    res.json(rec);
+  })
+});
+
+router.delete('/API/question/:question', function(req, res){
+  req.question.remove(function(err){
+    if(err){
+      return next(err);
+    }
+    res.json(req.question);
   })
 });
 
