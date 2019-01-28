@@ -29,7 +29,7 @@ router.get("/API/settings/", function (req, res, next) {
 /* POST question . */
 router.post("/API/question/",function(req,res,next){
   let question = new Question(req.body);
-  Question.save(function(err, rec){
+  question.save(function(err, rec){
     if (err){return next(err);}
     res.json(rec);
   })
